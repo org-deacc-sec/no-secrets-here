@@ -1,0 +1,21 @@
+name: Testing
+on: 
+  workflow_dispatch:
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  run-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+
+      - uses: ./.github/actions/safe-action
+        env: 
+          ORG_SECRET: ${{ secrets.ORG_SECRET_TT1 }}
+        with:
+          org_secret: ${{ secrets.ORG_SECRET_TT1 }}
+          env: env
