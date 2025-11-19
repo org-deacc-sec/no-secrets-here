@@ -8,5 +8,5 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: Run command
-        run: "Echo ran"
+        run: echo "ran"
     
