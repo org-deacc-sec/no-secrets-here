@@ -1,0 +1,11 @@
+name: Random
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, reopened, ready_for_review, auto_merge_enabled, synchronize]
+
+jobs:
+  full:
+    uses: .github/workflows/my-reusable.yml@v1
+    secrets: inherit
