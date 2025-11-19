@@ -1,9 +1,9 @@
-name: Random
+name: Use Reusable
 
 on:
   workflow_dispatch:
 
 jobs:
-  full:
+  useReusable:
     uses: org-deacc-sec/no-secrets-here/.github/workflows/my-reusable.yml@main
     secrets: inherit
