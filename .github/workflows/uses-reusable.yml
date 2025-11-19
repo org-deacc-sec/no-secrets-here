@@ -5,5 +5,5 @@ on:
 
 jobs:
   full:
-    uses: ./.github/workflows/my-reusable.yml@v1
+    uses: org-deacc-sec/no-secrets-here/.github/workflows/my-reusable.yml@main
     secrets: inherit
