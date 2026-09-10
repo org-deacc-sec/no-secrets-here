@@ -1,0 +1,29 @@
+name: Restore Test Matrix
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  emit-logs:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        asset_group:
+          - metadata
+          - content
+          - logs
+    steps:
+      - name: Emit workflow log lines
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "restore-test: matrix job starting"
+          echo "asset_group=${{ matrix.asset_group }}"
+          echo "repository=${GITHUB_REPOSITORY}"
+          echo "run_id=${GITHUB_RUN_ID}"
+          echo "job=${GITHUB_JOB}"
