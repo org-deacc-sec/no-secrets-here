@@ -6,10 +6,10 @@ Repository fixtures for testing what repository data can be restored after delet
 
 This repository now includes:
 
-- workflow definitions under `/home/runner/work/no-secrets-here/no-secrets-here/.github/workflows`
+- workflow definitions under `.github/workflows`
 - a manual workflow that generates clear job logs and uploads an artifact bundle
 - a second manual workflow that produces multiple job logs
-- sample repository content under `/home/runner/work/no-secrets-here/no-secrets-here/restore-test-assets`
+- sample repository content under `restore-test-assets`
 
 ## Added workflows
 
