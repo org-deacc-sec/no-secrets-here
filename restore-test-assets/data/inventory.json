@@ -1,0 +1,10 @@
+{
+  "repository": "org-deacc-sec/no-secrets-here",
+  "purpose": "repository restore testing",
+  "assets": [
+    "workflow definitions",
+    "workflow logs",
+    "workflow artifacts",
+    "sample repository files"
+  ]
+}

@@ -1,0 +1,47 @@
+name: Restore Test Logs And Artifacts
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-restore-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+
+      - name: Generate logs and artifact contents
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "restore-test: workflow started"
+          echo "repository=${GITHUB_REPOSITORY}"
+          echo "run_id=${GITHUB_RUN_ID}"
+          echo "run_attempt=${GITHUB_RUN_ATTEMPT}"
+          echo "ref=${GITHUB_REF}"
+          echo "sha=${GITHUB_SHA}"
+
+          mkdir -p workflow-output
+
+          printf 'repository=%s\n' "${GITHUB_REPOSITORY}" > workflow-output/run-details.txt
+          printf 'run_id=%s\n' "${GITHUB_RUN_ID}" >> workflow-output/run-details.txt
+          printf 'run_attempt=%s\n' "${GITHUB_RUN_ATTEMPT}" >> workflow-output/run-details.txt
+          printf 'ref=%s\n' "${GITHUB_REF}" >> workflow-output/run-details.txt
+          printf 'sha=%s\n' "${GITHUB_SHA}" >> workflow-output/run-details.txt
+
+          cp restore-test-assets/data/inventory.json workflow-output/inventory.json
+          cp restore-test-assets/data/checkpoints.csv workflow-output/checkpoints.csv
+          cp restore-test-assets/notes/timeline.txt workflow-output/timeline.txt
+
+          ls -R workflow-output
+
+      - name: Upload restore-test artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: restore-test-bundle
+          path: workflow-output
+          retention-days: 30
